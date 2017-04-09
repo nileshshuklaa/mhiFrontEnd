@@ -1,0 +1,18 @@
+
+<div class="col-md-4 personText">
+<div class="row text-center">
+  <span>{{ personality.name }}</span>
+  <br>
+  <span class="subtitle-color">{{ personality.title }}</span>
+</div>
+<div class="row">
+<img class=".center-block img-responsive" [src]="personality.imagePath" style="height: 110px;"/>
+<img class=".center-block img-responsive" src="../../assets/logo.jpg"/>
+</div>
+
+<div class="row text-center">
+  <span class="col-xs-6 background-lovescore">{{personality.loveScore}}</span>
+  <span class="col-xs-6 background-hatescore">{{personality.hateScore}}</span>
+</div>
+
+</div>

@@ -1,0 +1,15 @@
+.personText{
+    font-size: 10px;
+}
+.subtitle-color{
+    color: dodgerblue;
+}
+
+.background-lovescore{
+    background-color: lightpink;
+}
+
+.background-hatescore{
+    background-color: darkslategray;
+    color: white;
+}
