@@ -1,0 +1,40 @@
+.personText{
+    font-size: 10px;
+}
+.subtitle-color{
+    color: dodgerblue;
+}
+
+.background-lovescore{
+    background-color: lightpink;
+}
+
+.background-hatescore{
+    background-color: darkslategray;
+    color: white;
+}
+
+.noPadding{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.noMargin{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.verticalCenterAlign{
+    height: 80px;    
+    top: 50%;
+    bottom: 50%;
+    transform: translate(0%, 20%)
+}
+.px5{
+    font-size: 5px;
+}
+
+.inlineFloatLeft{
+    display: inline; 
+    float:left;
+}
