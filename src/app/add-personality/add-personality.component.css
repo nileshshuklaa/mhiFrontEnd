@@ -1,0 +1,8 @@
+.imageframe{
+    margin-left:120px; 
+    margin-top:50px;
+    width:200px;
+    height:200px;
+    border-color: black;
+    border-style: dotted;
+}

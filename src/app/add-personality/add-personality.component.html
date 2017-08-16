@@ -1,0 +1,36 @@
+<h1>Add Personality</h1>
+<form [formGroup]="addPersonalityForm">
+  <div class="row">
+    <div class="col-lg-6 col-xs-4">
+      <div class="form-group">
+        <label for="wikiProfile" class="labelText">Wikipedia Profile</label>
+        <input type="text" class="form-control" formControlName="wikiProfile" id="wikiProfile" required>
+      </div>
+      <div class="form-group">
+        <label for="name" class="labelText">Name</label>
+        <input type="text" class="form-control" formControlName="name" id="name" required>
+      </div>
+      <div class="form-group">
+        <label for="popularName" class="labelText">Populary Called</label>
+        <input type="text" class="form-control" formControlName="popularName" id="popularName" required>
+      </div>
+      <div class="form-group">
+        <label for="domain" class="labelText">Domain</label>
+        <input type="text" class="form-control" formControlName="domain" id="domain" required>
+      </div>
+      <div class="form-group">
+        <label for="country" class="labelText">Country</label>
+        <input type="text" class="form-control" formControlName="country" id="country">
+      </div>
+      
+    </div>
+    <div class="col-lg-6 col-xs-4">
+      <div class="form-group">
+        <input id="file" name="file" type="file" >
+      </div>
+    </div>
+  </div>
+      <button class="btn btn-primary" (click)="onAddPersonality()">Add</button>
+
+      <img [src]="result"/>
+</form>
