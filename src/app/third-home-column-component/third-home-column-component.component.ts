@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { personality } from '../shared/personality.model';
+import { Personality } from '../shared/personality.model';
 
 @Component({
   selector: 'third-home-column-component',
@@ -7,7 +7,7 @@ import { personality } from '../shared/personality.model';
   styleUrls: ['./third-home-column-component.component.css']
 })
 export class ThirdHomeColumnComponent implements OnInit {
-@Input() personality: personality = new personality("Rahul Gandhi", "../../assets/rgandhi.jpg", "Vice President congress national party", 9.5,
+@Input() personality: Personality = new Personality("Rahul Gandhi", "../../assets/rgandhi.jpg", "Vice President congress national party", 9.5,
     6 );
 
   constructor() { }

@@ -1,3 +1,11 @@
-<div class="col-md-4">
-      <third-home-column-component></third-home-column-component>
-     </div>
+<div class="panel panel-default" style="margin-top: 5px;">
+      <div class="panel-heading">
+            <a routerLink="topicName"> {{title}}</a>
+      </div>
+      <div class="panel-body">
+            <personality-component *ngFor="let currentPersonality of personalities"
+            [personality]="currentPersonality"
+            ></personality-component>
+      </div>
+</div>
+      

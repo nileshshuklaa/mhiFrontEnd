@@ -2,6 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { environment } from './environment/environment';
+import { ImageUploadModule } from 'angular2-image-upload';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +20,10 @@ import { ThinPersonalityTemplateComponent } from './popular-personality-compoent
 import { HomeComponent } from './home-component/home-component.component';
 import { SubscribedComponent } from './subscribed/subscribed.component';
 import { AllDiscussionsComponent } from './all-discussions/all-discussions.component';
+import { TopicComponent } from './topic/topic.component';
+import { AddPersonalityComponent } from './add-personality/add-personality.component';
+import { PersonalityServices } from './services/personality.services';
+
 
 
 @NgModule({
@@ -29,15 +38,21 @@ import { AllDiscussionsComponent } from './all-discussions/all-discussions.compo
     ThinPersonalityTemplateComponent,
     HomeComponent,
     SubscribedComponent,
-    AllDiscussionsComponent
+    AllDiscussionsComponent,
+    TopicComponent,
+    AddPersonalityComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    ReactiveFormsModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment),
+    AngularFireDatabaseModule,
+    ImageUploadModule.forRoot()
   ],
-  providers: [],
+  providers: [PersonalityServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

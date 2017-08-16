@@ -1,10 +1,10 @@
 
-<div class="row noMargin inlineFloatLeft text-center" style="width: 50px; margin-right:2px;">
-<img class="img-responsive inlineImage" [src]="personality.imagePath" style="height: 50px; width: 45px;"/>
+<div class="row inlineFloatLeft text-center personality-div">
+  <img class="img-responsive inlineImage personality-img" [src]="personality.imagePath" />
 
-<span class="px5">{{ personality.name }}</span>
-
-  <span class="col-xs-12 background-lovescore px5">{{personality.loveScore}}</span>
-  <span class="col-xs-12 background-hatescore px5">{{personality.hateScore}}</span>
-
+  <span class="px5">{{ personality.name }}</span>
+  <div class="row rating-row">
+      <span class="col-xs-4 background-lovescore px5" style="width:50%; padding:0px;">{{personality.loveScore}}</span>
+      <span class="col-xs-4 background-hatescore px5" style="width:50%; padding:0px;">{{personality.hateScore}}</span>
+  </div>
 </div>

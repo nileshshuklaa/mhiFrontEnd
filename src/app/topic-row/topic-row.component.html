@@ -1,9 +1,12 @@
-
-      <div class="col-xs-4 titleText noPadding verticalCenterAlign">
-            {{title}}
+<div class="panel panel-default">
+      <div class="panel-heading">
+            <a routerLink="topicName"> {{title}}</a>
       </div>
-      <div class="row col-xs-8">
+      <div class="panel-body">
             <personality-component *ngFor="let currentPersonality of personalities"
             [personality]="currentPersonality"
             ></personality-component>
       </div>
+</div>
+      
+      

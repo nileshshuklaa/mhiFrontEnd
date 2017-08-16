@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { personality } from '../shared/personality.model';
+import { Personality } from '../shared/personality.model';
 
 @Component({
   selector: 'personality-component',
@@ -8,7 +8,7 @@ import { personality } from '../shared/personality.model';
    '../shared/common.css']
 })
 export class PersonalityComponent implements OnInit {
-@Input() personality: personality;
+@Input() personality: Personality;
 
 
 

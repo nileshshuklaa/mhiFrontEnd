@@ -1,4 +1,4 @@
-export class personality {
+export class Personality {
    public name: string;
    public imagePath: string;
    public title: string;
