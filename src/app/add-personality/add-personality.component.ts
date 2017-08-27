@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRouteSnapshot } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl,Validators } from '@angular/forms';
 import { PersonalityServices } from '../services/personality.services';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -32,12 +32,12 @@ export class AddPersonalityComponent implements OnInit {
 
   ngOnInit() {
     this.addPersonalityForm = new FormGroup({
-      'wikiProfile': new FormControl(null),
-      'name': new FormControl(null),
-      'title': new FormControl(null),
-      'popularName': new FormControl(null),
-      'domain': new FormControl(null),
-      'country': new FormControl(null)
+      'wikiProfile': new FormControl(null, Validators.required),
+      'name': new FormControl(null, Validators.required),
+      'title': new FormControl(null, Validators.required),
+      'popularName': new FormControl(null, Validators.required),
+      'domain': new FormControl(null, Validators.required),
+      'country': new FormControl(null, Validators.required)
     });
   }
 
