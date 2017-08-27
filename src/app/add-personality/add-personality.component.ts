@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router, ActivatedRouteSnapshot } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { PersonalityServices } from '../services/personality.services';
 import { AngularFireModule } from 'angularfire2';
@@ -16,14 +17,17 @@ import 'firebase/storage';
    '../shared/common.css']
 })
 export class AddPersonalityComponent implements OnInit {
-  private storageRef: any;
   @Input() folder: string;
+  @Output() cancelled:EventEmitter<string> = new EventEmitter();
+  private storageRef: any;
   addPersonalityForm: FormGroup;
   private result; 
+  private showError = false;
 
-  constructor(private personalityServices: PersonalityServices, private firebaseService: AngularFireDatabase, firebaseApp: FirebaseApp) {
+  constructor(private personalityServices: PersonalityServices, private firebaseService: AngularFireDatabase, firebaseApp: FirebaseApp, private router:Router) {
+    
       this.storageRef = firebaseApp.storage().ref();
-      this.displayImage();
+     
    }
 
   ngOnInit() {
@@ -38,9 +42,38 @@ export class AddPersonalityComponent implements OnInit {
   }
 
 
-  onAddPersonality(data: Object){
-    let imagePath = this.upload();
+  back() {
+        this.cancelled.emit();
+        this.router.navigate(['./popularpersonality']);
   }
+
+  onAddPersonality(data: Object){
+    if(!this.errorExists()){
+      this.upload();
+      this.back();
+    }
+  }
+
+errorExists(){
+
+  console.log(this.addPersonalityForm.value['name']);
+  if(
+      (<HTMLInputElement>document.getElementById('file')).files[0] == null ||
+      this.addPersonalityForm.value['name'] == null || this.addPersonalityForm.value['name'] == '' ||
+      this.addPersonalityForm.value['title'] == null || this.addPersonalityForm.value['title'] == '' ||
+      this.addPersonalityForm.value['country'] == null || this.addPersonalityForm.value['country'] == '' ||
+      this.addPersonalityForm.value['popularName'] == null || this.addPersonalityForm.value['popularName'] == '' ||
+      this.addPersonalityForm.value['domain'] == null || this.addPersonalityForm.value['domain'] == '' ||
+      this.addPersonalityForm.value['wikiProfile'] == null || this.addPersonalityForm.value['wikiProfile'] == ''
+    ){
+      console.log('error occurred');
+    this.showError = true;
+    return true;
+  }
+  this.showError = false;
+  return false;
+}
+
 
   upload() {
         let path = '';
@@ -72,12 +105,6 @@ export class AddPersonalityComponent implements OnInit {
       this.firebaseService.list('personalities').push(addPersonalityObj);
     }
 
-    displayImage(){
-      console.log('entered method');
-      var pathRef = this.storageRef.child('personalityImages/1499649754913akejiwal.jpg');
-      pathRef.getDownloadURL().then(url => this.result = url);
-      //pathRef.getDownloadURL().then(url => console.log(url));
-      //console.log(this.result);
-    }
+   
 
 }

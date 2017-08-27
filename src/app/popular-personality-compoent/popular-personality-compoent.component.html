@@ -2,13 +2,16 @@
   <div class="col-lg-8 col-xs-hidden">
 
   </div>
-  <div class="col-lg-4 col-xs-2">
-    <button type="button" class="btn btn-success" routerLink="addPersonality">Add Personality</button>
+  <div class="col-lg-4 col-xs-2" style="float:right">
+    <button type="button" class="btn btn-default" (click)="toggleAddPersonalityButton()" [hidden]='!showAddPersonalityButton' aria-label="Left Align">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+    </button>
   </div>
-  <router-outlet></router-outlet>
+  <add-personality [hidden]='showAddPersonalityButton' (cancelled)="toggleAddPersonalityButton()"></add-personality>
 </div>
 
-<div style="margin-top: 5px;">
+<div style="margin-top: 5px;" [hidden]='!showAddPersonalityButton'>
   <thin-personality-template *ngFor="let personality of personalities"
   [personality]="personality"></thin-personality-template>
 </div>

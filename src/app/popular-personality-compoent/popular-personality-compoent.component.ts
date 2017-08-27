@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { Personality} from '../shared/personality.model';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -18,15 +18,19 @@ export class PopularPersonalityCompoent {
   private afPersonalities : FirebaseListObservable<any>;
   private storageRef : any;
   private personalities: Personality[] = [];
+  private showAddPersonalityButton = true;
 
   constructor(public firebaseService: AngularFireDatabase, firebaseApp: FirebaseApp) { 
     this.storageRef = firebaseApp.storage().ref();
     this.firebaseService.list('personalities').subscribe(snapshots => this.populatePersonalityObjects(snapshots));
   }
 
+ toggleAddPersonalityButton(){
+   this.showAddPersonalityButton = !this.showAddPersonalityButton;
+ }
   populatePersonalityObjects(snapshots){
+      this.personalities = [];
       snapshots.forEach(snapshot => {
-          //console.log(snapshot.key, snapshot.imagePath);
           var currentPersonality = new Personality(
             this.storageRef,
             snapshot.name, 

@@ -1,4 +1,11 @@
 <h1>Add Personality</h1>
+
+<div class="alert alert-danger" role="alert" [hidden]="!showError">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  Enter all mandatory fields
+</div>
+
 <form [formGroup]="addPersonalityForm">
   <div class="row">
     <div class="col-lg-6 col-xs-4">
@@ -26,15 +33,13 @@
         <label for="country" class="labelText">Country</label>
         <input type="text" class="form-control" formControlName="country" id="country">
       </div>
-      
-    </div>
-    <div class="col-lg-6 col-xs-4">
       <div class="form-group">
-        <input id="file" name="file" type="file" >
-      </div>
+        <label for="image" class="labelText">Image For Personality</label>
+        <input id="file" name="file" type="file">
+      </div>  
     </div>
+    
   </div>
       <button class="btn btn-primary" (click)="onAddPersonality()">Add</button>
-
-      <img [src]="result"/>
+      <button class="btn btn-primary" type="button" (click)="back()">Cancel</button>
 </form>
