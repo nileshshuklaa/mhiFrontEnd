@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Personality } from '../../shared/personality.model';
 
 @Component({
@@ -8,13 +8,11 @@ import { Personality } from '../../shared/personality.model';
   './thin-personality-template.component.css']
 })
 
-export class ThinPersonalityTemplateComponent implements OnInit {
+export class ThinPersonalityTemplateComponent {
 
  @Input() personality: Personality;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() { 
   }
-
+ 
 }

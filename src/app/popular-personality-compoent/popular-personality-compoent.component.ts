@@ -14,64 +14,36 @@ import 'firebase/storage';
 })
 
 @Injectable()
-export class PopularPersonalityCompoent implements OnInit {
+export class PopularPersonalityCompoent {
   private afPersonalities : FirebaseListObservable<any>;
   private storageRef : any;
-  private personalitiesNew: Personality[] = [];
-
-personalities: Personality[] =[
-    new Personality("Rahul Gandhi", "../../assets/rgandhi.jpg", "Vice President congress national party", 9.5,
-    6 ),
-    new Personality("Narendra Modi", "../../assets/nmodi.jpg", "Prime Minister, India", 9.5,
-    6 ),
-    new Personality("Arvind Kejriwal", "../../assets/akejiwal.jpg", "Chief Minister, Delhi", 9.5,
-    6 ),
-     new Personality("Rahul Gandhi", "../../assets/rgandhi.jpg", "Vice President congress national party", 9.5,
-    6 ),
-    new Personality("Narendra Modi", "../../assets/nmodi.jpg", "Prime Minister, India", 9.5,
-    6 ),
-    new Personality("Arvind Kejriwal", "../../assets/akejiwal.jpg", "Chief Minister, Delhi", 9.5,
-    6 ),new Personality("Rahul Gandhi", "../../assets/rgandhi.jpg", "Vice President congress national party", 9.5,
-    6 ),
-    new Personality("Narendra Modi", "../../assets/nmodi.jpg", "Prime Minister, India", 9.5,
-    6 ),
-    new Personality("Arvind Kejriwal", "../../assets/akejiwal.jpg", "Chief Minister, Delhi", 9.5,
-    6 ),new Personality("Rahul Gandhi", "../../assets/rgandhi.jpg", "Vice President congress national party", 9.5,
-    6 ),
-    new Personality("Narendra Modi", "../../assets/nmodi.jpg", "Prime Minister, India", 9.5,
-    6 ),
-    new Personality("Arvind Kejriwal", "../../assets/akejiwal.jpg", "Chief Minister, Delhi", 9.5,
-    6 )
-
-];
+  private personalities: Personality[] = [];
 
   constructor(public firebaseService: AngularFireDatabase, firebaseApp: FirebaseApp) { 
     this.storageRef = firebaseApp.storage().ref();
-    this.firebaseService.list('personalities').subscribe(snapshots => {
+    this.firebaseService.list('personalities').subscribe(snapshots => this.populatePersonalityObjects(snapshots));
+  }
+
+  populatePersonalityObjects(snapshots){
       snapshots.forEach(snapshot => {
-          console.log(snapshot.key, snapshot.imagePath);
+          //console.log(snapshot.key, snapshot.imagePath);
           var currentPersonality = new Personality(
+            this.storageRef,
             snapshot.name, 
             snapshot.imagePath,
-            snapshot.domain, //should be designation
+            snapshot.title, //should be designation
             9.5, //snapshot.loveScore
             6 // snapshot.hateScore
           );
-          this.personalitiesNew.push(currentPersonality);
-          console.log('!!!!!!!!!!!!!!     ' + currentPersonality.name);
+
+          this.personalities.push(currentPersonality);
+         
         });
-    });
-  }
+    }
 
-  ngOnInit() {
-    this.populateImagePaths();
-    console.log('~~~~~~~~~~~~~ ' + (<Personality>this.personalitiesNew[0]));
-  }
-
-  populateImagePaths(){
-      
-      // var pathRef = this.storageRef.child('personalityImages/fileName');
-      // pathRef.getDownloadURL().then(url => this.result = url);
-  }
+ /* getImagePath(currentPersonality){
+      var pathRef = this.storageRef.child(currentPersonality.imageKey);
+      pathRef.getDownloadURL().then(url =>  currentPersonality.imagePath);
+  }*/
 
 }

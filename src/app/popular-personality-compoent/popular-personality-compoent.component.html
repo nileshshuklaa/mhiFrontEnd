@@ -12,10 +12,3 @@
   <thin-personality-template *ngFor="let personality of personalities"
   [personality]="personality"></thin-personality-template>
 </div>
-
-
-<ul>
-  <li class="text" *ngFor="let item of afPersonalities | async">
-    {{item.name}}
-  </li>
-</ul>

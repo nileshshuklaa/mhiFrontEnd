@@ -8,10 +8,10 @@
       <div class="col-xs-6">
         <div class="card">
           <div class="center">
-            <img class="img-responsive inlineImage personality-img" [src]="personality.imagePath" />        
+      <img class="img-responsive inlineImage personality-img" [src]="personality.imagePath" />        
           </div>
           <div class="container-card px5 text-center center" style="margin-top:5px;">
-              <p>Congress Vice President</p>
+              <p>{{personality.title}}</p>
               <p class="background-lovescore"><span class="glyphicon glyphicon-heart pull-left" style="margin-left:2px; margin-right:5px;"></span>{{personality.loveScore}}</p>
               <p class="background-hatescore"><span class="glyphicon glyphicon-heart pull-left" style="margin-left:2px; margin-right:5px;"></span>{{personality.hateScore}}</p>
           </div>

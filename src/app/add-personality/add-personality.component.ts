@@ -30,6 +30,7 @@ export class AddPersonalityComponent implements OnInit {
     this.addPersonalityForm = new FormGroup({
       'wikiProfile': new FormControl(null),
       'name': new FormControl(null),
+      'title': new FormControl(null),
       'popularName': new FormControl(null),
       'domain': new FormControl(null),
       'country': new FormControl(null)
@@ -39,43 +40,36 @@ export class AddPersonalityComponent implements OnInit {
 
   onAddPersonality(data: Object){
     let imagePath = this.upload();
-    let addPersonalityObj = {
-      'name': this.addPersonalityForm.value['name'],
-      'country': this.addPersonalityForm.value['country'],
-      'popularName': this.addPersonalityForm.value['popularName'],
-      'domain': this.addPersonalityForm.value['domain'],
-      'wikiProfile': this.addPersonalityForm.value['wikiProfile'],
-      'imagePath': imagePath
-    };
-    console.log(" imagePath in add personality" + imagePath);
-    console.log(JSON.stringify(addPersonalityObj));
-    this.firebaseService.list('personalities').push(addPersonalityObj);
-    // this.personalityServices.addPersonality(this.addPersonalityForm.value).
-    // subscribe(
-    //   (response) => console.log(response),
-    //   (error) => console.log(error)
-    // )
   }
 
-  upload() : string {
+  upload() {
         let path = '';
         let success = false;
-        // This currently only grabs item 0, TODO refactor it to grab them all
-        for (let selectedFile of [(<HTMLInputElement>document.getElementById('file')).files[0]]) {
-            console.log(selectedFile);
+        let selectedFile = (<HTMLInputElement>document.getElementById('file')).files[0];
+        let af = this.firebaseService;
+        let folder = 'personalityImages';
+        let fileName = Date.now() + selectedFile.name;
+        path = `/${folder}/${fileName}`;
+        var iRef = this.storageRef.child(path);
             
-            let af = this.firebaseService;
-            let folder = 'personalityImages';
-            let fileName = Date.now() + selectedFile.name;
-            path = `/${folder}/${fileName}`;
-            var iRef = this.storageRef.child(path);
-            console.log('***************** ' + iRef);
-            iRef.put(selectedFile).then((snapshot) => {
-                console.log('Uploaded a blob or file! Now storing the reference at',`/${folder}/`);
-                this.firebaseService.list(`/${folder}/`).push({ path: path, filename: selectedFile.name })
-            });
-        }
-        return path;
+        return iRef.put(selectedFile).then((snapshot) => this.addObject(snapshot, folder, fileName, selectedFile.name));
+        
+    }
+
+    addObject(snapshot, folder, fileName, selectedFileName){
+      let path = `/${folder}/${fileName}`;
+      
+      let addPersonalityObj = {
+        'name': this.addPersonalityForm.value['name'],
+        'title': this.addPersonalityForm.value['title'],
+        'country': this.addPersonalityForm.value['country'],
+        'popularName': this.addPersonalityForm.value['popularName'],
+        'domain': this.addPersonalityForm.value['domain'],
+        'wikiProfile': this.addPersonalityForm.value['wikiProfile'],
+        'imagePath': snapshot.downloadURL
+      };
+     
+      this.firebaseService.list('personalities').push(addPersonalityObj);
     }
 
     displayImage(){
@@ -83,7 +77,7 @@ export class AddPersonalityComponent implements OnInit {
       var pathRef = this.storageRef.child('personalityImages/1499649754913akejiwal.jpg');
       pathRef.getDownloadURL().then(url => this.result = url);
       //pathRef.getDownloadURL().then(url => console.log(url));
-      console.log(this.result);
+      //console.log(this.result);
     }
 
 }

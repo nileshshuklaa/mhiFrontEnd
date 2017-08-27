@@ -7,8 +7,9 @@ import { Personality } from '../shared/personality.model';
   styleUrls: ['./third-home-column-component.component.css']
 })
 export class ThirdHomeColumnComponent implements OnInit {
-@Input() personality: Personality = new Personality("Rahul Gandhi", "../../assets/rgandhi.jpg", "Vice President congress national party", 9.5,
-    6 );
+@Input() personality: Personality = null;
+/*new Personality("Rahul Gandhi", "../../assets/rgandhi.jpg", "Vice President congress national party", 9.5,
+    6 );*/
 
   constructor() { }
 

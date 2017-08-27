@@ -25,7 +25,6 @@ import { AddPersonalityComponent } from './add-personality/add-personality.compo
 import { PersonalityServices } from './services/personality.services';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +47,7 @@ import { PersonalityServices } from './services/personality.services';
     HttpModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     ImageUploadModule.forRoot()
   ],
