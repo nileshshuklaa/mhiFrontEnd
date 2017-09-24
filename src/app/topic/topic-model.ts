@@ -9,10 +9,12 @@ export class TopicModel {
     public comments: string[];
    
 
-  constructor(title: string, details: string, tags: string, videoLink: string){
+  constructor(title: string, details: string, tags: string, videoLink: string,
+                personalities: Personality[]){
       this.title = title;
       this.details = details;
       this.tags = tags;
       this.videoLink = videoLink;
+      this.personalities = personalities;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl,Validators } from '@angular/forms';
 import { Router, ActivatedRouteSnapshot } from '@angular/router';
 import { AutoCompleteService } from '../services/autocomplete.service';
@@ -25,6 +25,7 @@ export class AddTopicComponent implements OnInit {
   private currentPersonality: Personality;
   private selectedPersonalities: Personality[] = [];
   displaySearchResult: boolean = true;
+  @Output() cancelled:EventEmitter<string> = new EventEmitter();
   startAt = new Subject();
   endAt = new Subject();
   lastKeypress: number = 0;
@@ -90,6 +91,12 @@ export class AddTopicComponent implements OnInit {
     );
   }
 
+  back() {
+        this.cancelled.emit();
+        this.router.navigate(['./subscribed']);
+  }
+
+
   search($event) {
     this.displaySearchResult = true;
         let q = $event.target.value;
@@ -102,7 +109,7 @@ export class AddTopicComponent implements OnInit {
   
   onAddTopic(data: Object){
     let addTopicObj = {
-        'personlity': this.selectedPersonalities,
+        'personalities': this.selectedPersonalities,
         'title': this.addTopicForm.value['topicTitle'],
         'details': this.addTopicForm.value['topicDetails'],
         'tags': this.addTopicForm.value['topicTags'],

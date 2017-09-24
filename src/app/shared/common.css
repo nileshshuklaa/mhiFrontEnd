@@ -52,6 +52,10 @@
     vertical-align:middle;
 }
 
+.top-bottom-margin-5px{
+    margin-top: 15px;
+}
+
 .scroller {
   text-align:center;
   cursor:pointer;

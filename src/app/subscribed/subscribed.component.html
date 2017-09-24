@@ -1,27 +1,21 @@
 <div class="row" style="margin-top: 5px;">
-  
-  
-  <add-topic></add-topic>
+    <div style="margin-bottom: 35px;">
+        <div class="col-lg-4 col-xs-2" style="float:right; margin-bottom: 50px;">
+            <button type="button" class="btn btn-default" (click)="toggleAddTopicButton()"
+                    [hidden]='!showAddTopicButton' 
+                    aria-label="Left Align">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            </button>
+        </div>
+        <add-topic [hidden]="showAddTopicButton" (cancelled)="toggleAddTopicButton()"></add-topic>
+    </div>
 
-
-
-
-
-
-<div class="hidden">
-****************************** Start of Subscribed topic list ****************************** 
-
-<div class="row" *ngIf="isTopicListAvailable">
-  dasfdasfdas {{ topics.length}}
-<topic-component  *ngFor="let currentTopic of topics"
-            [topic]="currentTopic"
-            ></topic-component>
+    <div class="row" *ngIf="isTopicListAvailable" [hidden]="!showAddTopicButton">
+          <topic-component  *ngFor="let currentTopic of topics"
+                    [topic]="currentTopic"
+                    ></topic-component>
+    </div>
 </div>
-
-
-</div>
-
-</div>
-
 
       

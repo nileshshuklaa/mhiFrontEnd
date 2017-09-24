@@ -1,6 +1,6 @@
 <div class="row inlineFloatLeft text-center personality-div">
   <sup>
-    <span class="glyphicon glyphicon-remove" aria-hidden="false" style="float: right" (click)="onRemoveSelection()"></span>
+    <span *ngIf="isDisplayRemoveOption" class="glyphicon glyphicon-remove" aria-hidden="false" style="float: right" (click)="onRemoveSelection()"></span>
   </sup>
   <img class="img-responsive inlineImage personality-img" [src]="personality.imagePath" />
   <span class="px5">{{ personality.name }}</span>

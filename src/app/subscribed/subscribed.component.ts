@@ -22,7 +22,7 @@ export class SubscribedComponent implements OnInit {
   private storageRef : any;
   private topics: TopicModel[] = [];
   private isTopicListAvailable = false;
-  private showAddPersonalityButton = true;
+  private showAddTopicButton = true;
   private personalities: Personality[] = [];
 
   constructor(public firebaseService: AngularFireDatabase, firebaseApp: FirebaseApp) { 
@@ -35,8 +35,8 @@ export class SubscribedComponent implements OnInit {
     console.log('loading subscribed component list');
   }
 
- toggleAddPersonalityButton(){
-   this.showAddPersonalityButton = !this.showAddPersonalityButton;
+ toggleAddTopicButton(){
+   this.showAddTopicButton = !this.showAddTopicButton;
  }
 
  populateTopics(snapshots){
@@ -46,7 +46,8 @@ export class SubscribedComponent implements OnInit {
             snapshot.title, 
             snapshot.details,
             snapshot.tags,
-            snapshot.videoLink
+            snapshot.videoLink,
+            snapshot.personalities
           );
 
           

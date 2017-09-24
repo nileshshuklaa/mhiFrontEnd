@@ -1,19 +1,19 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-      {{topic.title}}
-  </div>
-  
-</div>
-
-
 <div class="panel panel-default" style="margin-top: 5px;">
       <div class="panel-heading">
-            <a routerLink="topicName"> {{title}}</a>
+            <a routerLink="topicName"> 
+                <strong>{{ topic.title }}</strong>
+            </a>
+      </div>
+      <div class="panel-body">           
+           <div class="row top-bottom-margin-5px"> {{ topic.details }} </div>
+           <div class="row top-bottom-margin-5px"> <strong>Tags: </strong>{{ topic.tags }} </div>
+           <div class="row top-bottom-margin-5px"> <strong>Created By: </strong>TBD </div>
+           <div class="row top-bottom-margin-5px"> <a [href]="topic.videoLink">{{ topic.videoLink }}</a></div>           
       </div>
       <div class="panel-body">
-           <div class="row"> {{ topic.tags}} </div>
-           <div class="row"> {{ topic.details}} </div>
-           <div class="row"> {{ topic.videoLink}} </div>
-           
+          <personality-component *ngFor="let currentPersonality of topic.personalities"
+                  [personality]="currentPersonality"
+                  [isDisplayRemoveOption]="false"
+                  ></personality-component>
       </div>
 </div>
