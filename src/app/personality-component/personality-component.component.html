@@ -1,10 +1,12 @@
-
 <div class="row inlineFloatLeft text-center personality-div">
+  <sup>
+    <span class="glyphicon glyphicon-remove" aria-hidden="false" style="float: right" (click)="onRemoveSelection()"></span>
+  </sup>
   <img class="img-responsive inlineImage personality-img" [src]="personality.imagePath" />
-
   <span class="px5">{{ personality.name }}</span>
   <div class="row rating-row">
       <span class="col-xs-4 background-lovescore px5" style="width:50%; padding:0px;">{{personality.loveScore}}</span>
       <span class="col-xs-4 background-hatescore px5" style="width:50%; padding:0px;">{{personality.hateScore}}</span>
   </div>
+ 
 </div>

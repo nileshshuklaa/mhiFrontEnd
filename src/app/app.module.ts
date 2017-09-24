@@ -23,6 +23,10 @@ import { AllDiscussionsComponent } from './all-discussions/all-discussions.compo
 import { TopicComponent } from './topic/topic.component';
 import { AddPersonalityComponent } from './add-personality/add-personality.component';
 import { PersonalityServices } from './services/personality.services';
+import { AutoCompleteService } from './services/autocomplete.service';
+import { AddTopicComponent } from './add-topic/add-topic.component';
+import { CreateDiscussionComponent } from './create-discussion/create-discussion.component';
+import { PsnltySrchResultComponent } from './psnlty-srch-result/psnlty-srch-result.component';
 
 
 @NgModule({
@@ -39,7 +43,10 @@ import { PersonalityServices } from './services/personality.services';
     SubscribedComponent,
     AllDiscussionsComponent,
     TopicComponent,
-    AddPersonalityComponent
+    AddPersonalityComponent,
+    AddTopicComponent,
+    CreateDiscussionComponent,
+    PsnltySrchResultComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +58,7 @@ import { PersonalityServices } from './services/personality.services';
     AngularFireDatabaseModule,
     ImageUploadModule.forRoot()
   ],
-  providers: [PersonalityServices],
+  providers: [PersonalityServices, AutoCompleteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

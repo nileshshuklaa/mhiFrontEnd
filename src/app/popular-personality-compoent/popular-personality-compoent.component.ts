@@ -32,7 +32,6 @@ export class PopularPersonalityCompoent {
       this.personalities = [];
       snapshots.forEach(snapshot => {
           var currentPersonality = new Personality(
-            this.storageRef,
             snapshot.name, 
             snapshot.imagePath,
             snapshot.title, //should be designation

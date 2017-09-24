@@ -11,4 +11,6 @@ export class PersonalityServices{
         console.log("****************** " + JSON.stringify(data));
         return this.httpClient.post('https://mhiv1-1d765.firebaseio.com/personalities.json', data);
     }
+
+    
 }

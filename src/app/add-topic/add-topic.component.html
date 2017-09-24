@@ -1,0 +1,83 @@
+<h1>Create Discussion</h1>
+
+<div class="alert alert-danger" role="alert" [hidden]="!showError">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  Enter all mandatory fields
+</div>
+
+<form *ngIf="isDisplayAddTopicForm" [formGroup]="addTopicForm">
+   <div class="col-lg-12 col-xs-12">
+      <div class="form-group">
+        <label for="topicTitle" class="labelText">Title</label>
+        <input type="text" class="form-control" formControlName="topicTitle" id="topicTitle" required>
+      </div>
+      <div class="form-group">
+        <label for="name" class="labelText">Name</label>
+        <textarea class="form-control" formControlName="topicDetails" id="topicDetails" rows="4" cols="200" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="name" class="labelText">Topic Tags</label>
+        <input type="text" class="form-control" formControlName="topicTags" id="topicTags" required>
+      </div>
+      <div class="form-group">
+        <label for="popularName" class="labelText">Video Link</label>
+        <input type="text" class="form-control" formControlName="videoLink" id="videoLink" required>
+      </div>
+    </div>
+
+    <div *ngIf="selectedPersonalities.length != 0" >
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                  <a routerLink="topicName">Tagged Personalities</a>
+            </div>
+            <div class="panel-body">
+                  <personality-component *ngFor="let selectedPersonality of selectedPersonalities"
+                  [personality]="selectedPersonality"
+                  (removeOptionClicked) = "onPersonalityRemoved($event)"
+                  ></personality-component>
+            </div>
+        </div>
+    </div>
+
+
+  <div class="row">
+          <div class="col-lg-6 col-xs-4">
+                <div class="row">
+                      <div class="form-group">
+                          <label class="control-label" for="personalityName">Tag a Personality </label>
+                          <div class="input-group">
+                              <input type="text" class="form-control"
+                                    placeholder="Search a Personality" #personalityName id="personalityName"
+                                    (keydown)="search($event)"/>
+                              <span class="input-group-addon">
+                                  <i class="glyphicon glyphicon-search"></i>
+                              </span>                     
+                          </div>
+                      </div>
+                </div>
+                <div [hidden]="!displaySearchResult" class="row search-result" #forwardSearchResult style="margin-top:-15px;">
+                        <div *ngFor="let personality of personalities">
+                                      <a (click)="onNameSelected(personality?.name)">{{personality?.name}}</a>
+                        </div>
+                </div>
+              
+        </div>
+        <div class="col-lg-12 col-xs-8 top-margin" >
+                <span class="">
+                  Personality doesn't exist on MHI yet.
+                  <a>Want to add this Personality?</a>
+                </span>
+        </div>    
+    </div>
+
+    <div class="row" *ngIf="currentPersonality != null">
+        <psnlty-srch-result
+          [personality]="currentPersonality"
+          (addOptionClicked)="onPersonalitySelected($event)">
+        </psnlty-srch-result>
+    </div>
+
+    <button class="btn btn-primary" [disabled]="!addTopicForm.valid" (click)="onAddTopic()">Add</button>
+      <button class="btn btn-primary" type="button" (click)="back()">Cancel</button>
+</form>

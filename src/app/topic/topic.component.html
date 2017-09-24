@@ -1,17 +1,19 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-      {{topicDetails.title}}
+      {{topic.title}}
   </div>
-  <div class="panel-body">
-    <thin-personality-template *ngFor="let personality of topicDetails.personalities"
-    [personality]="personality"></thin-personality-template>
-  </div>
-  <div class="panel-footer comment-div">
-      <span *ngFor="let comment of topicDetails.comments">
-          {{comment}}
-          <hr>
-      </span>
-  </div>
+  
 </div>
 
 
+<div class="panel panel-default" style="margin-top: 5px;">
+      <div class="panel-heading">
+            <a routerLink="topicName"> {{title}}</a>
+      </div>
+      <div class="panel-body">
+           <div class="row"> {{ topic.tags}} </div>
+           <div class="row"> {{ topic.details}} </div>
+           <div class="row"> {{ topic.videoLink}} </div>
+           
+      </div>
+</div>

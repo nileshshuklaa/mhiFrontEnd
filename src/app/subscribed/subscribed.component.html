@@ -1,11 +1,27 @@
-<div class="panel panel-default" style="margin-top: 5px;">
-      <div class="panel-heading">
-            <a routerLink="topicName"> {{title}}</a>
-      </div>
-      <div class="panel-body">
-            <personality-component *ngFor="let currentPersonality of personalities"
-            [personality]="currentPersonality"
-            ></personality-component>
-      </div>
+<div class="row" style="margin-top: 5px;">
+  
+  
+  <add-topic></add-topic>
+
+
+
+
+
+
+<div class="hidden">
+****************************** Start of Subscribed topic list ****************************** 
+
+<div class="row" *ngIf="isTopicListAvailable">
+  dasfdasfdas {{ topics.length}}
+<topic-component  *ngFor="let currentTopic of topics"
+            [topic]="currentTopic"
+            ></topic-component>
 </div>
+
+
+</div>
+
+</div>
+
+
       

@@ -14,11 +14,8 @@ export class Personality {
    public loveScore: number;
    public hateScore: number;
 
-   constructor(storageRef: any, 
-                name: string, imagePath: string, title: string, 
+   constructor(name: string, imagePath: string, title: string, 
                 loveScore: number, hateScore:number){
-
-        this.storageRef = storageRef;
         this.name = name;
         this.imagePath = imagePath;
         this.title = title;

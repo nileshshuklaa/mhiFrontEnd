@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TopicDetailService } from './topic-detail.service';
 import { TopicModel } from './topic-model';
 
 @Component({
-  selector: 'app-topic',
+  selector: 'topic-component',
   templateUrl: './topic.component.html',
-  styleUrls: ['./topic.component.css'],
-  providers: [TopicDetailService]
+  styleUrls: ['./topic.component.css']
 })
 export class TopicComponent implements OnInit {
 
-  topicDetails: TopicModel;
+ @Input() topic: TopicModel;
 
-  constructor(private topicDetailService: TopicDetailService) { }
+  constructor() { 
+    //console.log(this.topic.title);
+   // console.log("DSDFDSfadsfasd");
+  }
 
   ngOnInit() {
-    this.topicDetails = this.topicDetailService.getTopicDetails();
+    console.log(this.topic.title);
   }
 
 }

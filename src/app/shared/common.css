@@ -124,3 +124,8 @@
     display: inline; 
     float: left;
 }
+
+textarea.ng-invalid.ng-touched,
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}

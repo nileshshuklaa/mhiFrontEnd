@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Personality } from '../shared/personality.model';
 
 @Component({
@@ -9,15 +9,15 @@ import { Personality } from '../shared/personality.model';
 })
 export class PersonalityComponent implements OnInit {
 @Input() personality: Personality;
+@Input() isDisplayRemoveOption: boolean;
+@Output() removeOptionClicked:EventEmitter<Personality> = new EventEmitter();
 
-
-
-
-
-
-  constructor() { }
+ constructor() { }
 
   ngOnInit() {
   }
 
+  onRemoveSelection(){
+    this.removeOptionClicked.emit(this.personality);
+  }
 }

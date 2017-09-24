@@ -2,6 +2,9 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <strong>{{ personality.name }}</strong>
+    <div *ngIf="isDisplayAddOption" style="display: inline; float: right;">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true" (click)="onAddOptionClicked()"></span>
+    </div>
   </div>
   <div class="panel-body">
     <div class="row">
